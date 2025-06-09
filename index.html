@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <title>PGDCA Project | Car Rental </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Syncopate:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #8dec34;
+            --primary-color-dark: #69d636;
+            --text-dark: #15191d;
+            --text-light: #737373;
+            --extra-light: #e5e5e5;
+            --white: #ffffff;
+            --max-width: 1200px;
+            --header-font: "Syncopate", sans-serif;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .section__container {
+            max-width: var(--max-width);
+            margin: auto;
+            padding: 5rem 1rem;
+        }
+
+        .section__header {
+            font-size: 3.25rem;
+            font-weight: 700;
+            font-family: var(--header-font);
+            color: var(--text-dark);
+            letter-spacing: -5px;
+            line-height: 4.25rem;
+        }
+
+        .btn {
+            padding: 1rem 1.5rem;
+            outline: none;
+            border: none;
+            font-size: 1rem;
+            color: var(--white);
+            background-color: var(--text-dark);
+            border-radius: 10px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            color: var(--text-dark);
+            background-color: var(--primary-color);
+        }
+
+        img {
+            display: flex;
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        html,
+        body {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+        }
+
+        header {
+            position: relative;
+            background-image: url(assets/header-bg.png);
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        nav {
+            position: fixed;
+            isolation: isolate;
+            width: 100%;
+            z-index: 9;
+        }
+
+        .nav__header {
+            padding: 1rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--primary-color);
+        }
+
+        .nav__logo a {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: var(--header-font);
+            color: var(--white);
+            letter-spacing: -2px;
+        }
+
+        .nav__menu__btn {
+            font-size: 1.5rem;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        .nav__links {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 2rem;
+            background-color: var(--primary-color);
+            transition: transform 0.5s;
+            z-index: -1;
+        }
+
+        .nav__links.open {
+            transform: translateY(100%);
+        }
+
+        .nav__links a {
+            font-weight: 500;
+            color: var(--white);
+        }
+
+        .nav__links a:hover {
+            color: var(--text-dark);
+        }
+
+        .nav__btn {
+            display: none;
+        }
+
+        .header__container {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: 5rem 1rem;
+
+        }
+
+        .header__container h1 {
+            max-width: 750px;
+            margin-inline: auto;
+            margin-bottom: 2rem;
+            font-size: 4.5rem;
+            font-weight: 700;
+            font-family: var(--header-font);
+            color: var(--text-dark);
+            letter-spacing: -5px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .header__container form {
+            max-width: 800px;
+            margin-inline: auto;
+            margin-bottom: 4rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background-color: var(--white);
+            box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header__container .input__group {
+            flex: 1 0 170px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .header__container label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .header__container input {
+            width: 100%;
+            outline: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .header__container input::placeholder {
+            color: var(--text-light);
+        }
+
+        .header__container .btn {
+            padding: 15px 17px;
+            font-size: 1.5rem;
+        }
+
+        .header__container img {
+            max-width: 1050px;
+            margin-inline: auto;
+            filter: drop-shadow(5px 20px 20px rgba(0, 0, 0, 20));
+        }
+
+        .header__container::before {
+            position: absolute;
+            content: "";
+            left: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 50%;
+            background-color: var(--primary-color);
+            transform: translateY(50%) skewY(-4deg);
+            z-index: -1;
+        }
+
+        .scroll__down {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            font-size: 1.5rem;
+            padding: 8px 5px;
+            color: var(--text-dark);
+            background-color: var(--primary-color);
+            border-radius: 2rem;
+            border: 8px solid var(--white);
+        }
+
+
+        .scroll__down:hover {
+            color: var(--primary-color);
+            background-color: var(--text-dark);
+        }
+
+        .range__container .section__header {
+            max-width: 700px;
+            margin-inline: auto;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .range__grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .range__card {
+            position: relative;
+            isolation: isolate;
+            max-width: 600px;
+            margin-inline: auto;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .range__card img {
+            transition: 0.3s;
+        }
+
+        .range__card:hover img {
+            transform: scale(1.1);
+        }
+
+        .range__details {
+            position: absolute;
+            inset: 0;
+            padding: 2rem;
+            background-image: linear-gradient(to bottom right,
+                    rgba(0, 0, 0, 1),
+                    rgba(0, 0, 0, 0.1) 50%,
+                    rgba(0, 0, 0, 0.75));
+        }
+
+        .range__details h4 {
+            margin-bottom: 1rem;
+            font-size: 3rem;
+            font-weight: 600;
+            font-family: var(--header-font);
+            color: var(--white);
+        }
+
+        .range__details a {
+            display: inline-block;
+            padding: 0px 6px;
+            font-size: 1.5rem;
+            color: var(--white);
+            border: 2px solid var(--white);
+            border-radius: 100%;
+        }
+
+        .range__details a:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .heading {
+            margin: 10rem;
+        }
+
+        .heading h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .trending .heading {
+            text-align: center;
+            font-family: var(--header-font);
+        }
+
+        .trending__content {
+            margin: 5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, auto));
+            gap: 1.5rem;
+        }
+
+        .trend__box {
+            background-color: #a5e768;
+            padding: 20px;
+            border-radius: 10px;
+
+        }
+
+        .trend__box:hover {
+            background: var(--primary-color);
+
+        }
+
+        .trend__box h4 {
+            display: inline-block;
+            font-family: var(--header-font);
+            background-color: var(--extra-light);
+            font-size: 0.8rem;
+            padding: 4px;
+            border-radius: 4px;
+            font-weight: 550;
+        }
+
+        .trend__box:hover h4 {
+            background: #eeeff2;
+        }
+
+        .trend__box img {
+            margin: 1.4rem 0 1rem;
+        }
+
+        .trend__box h3 {
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+
+        .trend__box p {
+            font-size: 0.9rem;
+            margin-top: 7px;
+            color: var(--text-light);
+        }
+
+        .location__container {
+            display: grid;
+            gap: 2rem 0;
+            overflow: hidden;
+        }
+
+        .location__image img {
+            max-width: 500px;
+            margin-inline: auto;
+            padding-inline: 1rem;
+        }
+
+        .location__container .section__header {
+            margin-bottom: 2rem;
+        }
+
+        .location__content p {
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .team .heading {
+            text-align: center;
+            font-family: var(--header-font);
+            margin-bottom: 2rem;
+        }
+
+        .team__container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, auto));
+            gap: 1.5rem;
+        }
+
+        .team_box img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .team_box h2 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--primary-color-dark);
+            margin-top: 0;
+        }
+
+        .team_box span {
+            font-size: 0.77rem;
+            color: var(--text-light);
+        }
+
+        .team_box p {
+            font-size: 0.80rem;
+            font-family: var(--header-font);
+            color: solid var(--text-light);
+            margin-top: 10px;
+        }
+
+
+
+        .story__container .section__header {
+            max-width: 600px;
+            margin-inline: auto;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .story__grid {
+            display: grid;
+            gap: 4rem 1rem;
+        }
+
+        .story__date {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--text-light);
+        }
+
+        .story__date span {
+            padding-right: 10px;
+            font-size: 3rem;
+            font-weight: 500;
+            line-height: 2.5rem;
+            border-right: 2px solid var(--text-light);
+        }
+
+        .story__date div p {
+            margin-bottom: 0;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .story__card h4 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-family: var(--header-font);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 2rem;
+            color: var(--text-dark);
+        }
+
+        .story__card p {
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .banner__container {
+            padding-block: 5rem;
+            overflow: hidden;
+        }
+
+        .banner__wrapper {
+            width: max-content;
+            display: flex;
+            align-items: center;
+            gap: 8rem;
+            animation: scroll 45s linear infinite;
+        }
+
+        .banner__wrapper img {
+            height: 100px;
+        }
+
+        .review__container {
+            position: relative;
+            padding: 5rem;
+        }
+
+        .review__container .heading {
+            text-align: center;
+            font-family: var(--header-font);
+            margin-bottom: 30px;
+        }
+
+        .review__content {
+            display: grid;
+            gap: 10px;
+        }
+
+        .tbox {
+            background: #e4e0db;
+            padding: 20px;
+            border-radius: 10px;
+
+
+        }
+
+        .tbox .stars {
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .tbox p {
+            font-size: 1rem;
+            margin: 10px 0;
+            color: var(--text-light);
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile__data h3 {
+            font-size: 1rem;
+            line-height: 1rem;
+
+        }
+
+        .profile__data span {
+            font-size: 0.9rem;
+            color: #8f8c8c;
+
+        }
+
+        .review__btn {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 1rem;
+        }
+
+        .review__btn .btn {
+            color: var(--text-dark);
+            background-color: var(--primary-color);
+        }
+
+        .review__btn .btn:hover {
+            color: var(--primary-color);
+            background-color: var(--text-dark);
+        }
+
+
+        .download {
+            position: relative;
+            isolation: isolate;
+            padding-inline: 1rem;
+            overflow: hidden;
+        }
+
+        .download::before {
+            position: absolute;
+            content: "";
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: calc(70% - 5rem);
+            background-color: var(--text-dark);
+            z-index: -1;
+        }
+
+        .download__container {
+            padding: 0 1rem;
+            display: grid;
+            background-color: var(--primary-color);
+            border-radius: 1rem;
+        }
+
+        .download__content {
+            padding-block: 5rem;
+        }
+
+        .download__content .section__header {
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: -2px;
+        }
+
+        .download__links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .download__links img {
+            max-width: 150px;
+        }
+
+
+        .news {
+            background-color: var(--text-dark);
+        }
+
+        .news__container {
+            padding-bottom: 0;
+            display: grid;
+            gap: 2rem;
+        }
+
+        .news__container .section__header {
+            font-size: 2.5rem;
+            line-height: 3.25rem;
+            letter-spacing: -2px;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .news__container form {
+            width: 100%;
+            max-width: 450px;
+            margin-inline: auto;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .news__container input {
+            width: 100%;
+            outline: none;
+            border: none;
+            padding: 0.75rem 0;
+            font-size: 1rem;
+            color: var(--white);
+            background-color: transparent;
+            border-bottom: 2px solid var(--text-light);
+        }
+
+        .news__container .btn {
+            padding: 10px 12px;
+            font-size: 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+        }
+
+        .news__container .btn:hover {
+            background-color: var(--text-dark);
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--text-dark);
+        }
+
+        .footer__container {
+            display: grid;
+            gap: 4rem 2rem;
+            border-bottom: 1px solid var(--text-light);
+        }
+
+        .footer__container h4 {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            font-family: var(--header-font);
+            color: var(--white);
+        }
+
+        .footer__links {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .footer__links a {
+            color: var(--text-light);
+        }
+
+        .footer__links a:hover {
+            color: var(--white);
+        }
+
+        .footer__socials {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer__socials a {
+            padding: 8px 12px;
+            font-size: 1.25rem;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+            border-radius: 100%;
+        }
+
+        .footer__socials a:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .footer__bar {
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+
+        @keyframes scroll {
+            to {
+                transform: translateX(calc(-50% - 4rem));
+            }
+        }
+
+        @media (width > 540px) {
+            .story__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer__container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (width > 768px) {
+            nav {
+                position: static;
+                padding: 2rem 1rem 0;
+                max-width: var(--max-width);
+                margin-inline: auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 2rem;
+            }
+
+            .nav__header {
+                flex: 1;
+                padding: 0;
+                background-color: transparent;
+            }
+
+            .nav__logo a {
+                color: var(--text-dark);
+            }
+
+            .nav__menu__btn {
+                display: none;
+            }
+
+            .nav__links {
+                position: static;
+                padding: 0;
+                width: fit-content;
+                flex-direction: row;
+                background-color: transparent;
+                transform: none;
+            }
+
+            .nav__links a {
+                color: var(--text-dark);
+            }
+
+            .nav__links a:hover {
+                color: var(--primary-color);
+            }
+
+            .nav__btn {
+                display: flex;
+                flex: 1;
+                align-items: center;
+                justify-content: flex-end;
+            }
+
+            .nav__btn .btn {
+                color: var(--text-dark);
+                background-color: var(--primary-color);
+            }
+
+            .nav__btn .btn:hover {
+                color: var(--primary-color);
+                background-color: var(--text-dark);
+            }
+
+            .range__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .location__container {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: center;
+            }
+
+            .location__image {
+                grid-area: 1/2/2/3;
+            }
+
+
+
+            .story__grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .review__content {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+
+            }
+
+            .footer__container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+
+        @media (width > 1024px) {
+            .range__grid {
+                gap: 1.5rem;
+            }
+
+            .range__details {
+                padding: 4rem;
+            }
+
+            .story__grid {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Header Section -->
+
+    <header>
+        <nav class="nav">
+            <div class="nav__header">
+                <div class="nav__logo">
+                    <a href="#">RENTO</a>
+
+                </div>
+                <div class="nav__menu__btn" id="menu-btn">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about">Rent</a></li>
+                <li><a href="#trending">Trending</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+            <div class="nav__btn">
+                <a href="sign.html"><button class="btn">Get Started</button></a>
+            </div>
+        </nav>
+        <div class="header__container" id="home">
+            <h1>PREMIUM CAR RENTAL</h1>
+            <form action="/">
+                <div class="input__group">
+                    <label for="location">Pick up & Return location</label>
+                    <input type="search" name="location" id="location" placeholder="Dhalli, Shimla">
+                </div>
+                <div class="input__group">
+                    <label for="start">Start</label>
+                    <input type="text" name="start" id="start" placeholder="May 16, 10:00 AM">
+                </div>
+                <div class="input__group">
+                    <label for="stop">Stop</label>
+                    <input type="stop" name="stop" id="stop" placeholder="May 20, 10:00 AM">
+                </div>
+                <button class="btn">
+                    <i class="ri-search-2-line"></i>
+                </button>
+            </form>
+            <img src="assets/header.png" alt="header">
+        </div>
+
+        <a href="#about" class="scroll__down">
+            <i class="ri-arrow-down-fill"></i>
+        </a>
+    </header>
+
+    <!-- Range Section -->
+
+    <section class="section__container range__container" id="about">
+        <h2 class="section__header">WIDE RANGE OF VEHICLES</h2>
+        <div class="range__grid">
+            <div class="range__card">
+                <img src="assets/range-1.jpg" alt="range">
+                <div class="range__details">
+                    <h4>CARS</h4>
+                    <a href="cars.html"><i class="ri-arrow-right-fill"></i></a>
+                </div>
+            </div>
+            <div class="range__card">
+                <img src="assets/range-2.jpg" alt="range">
+                <div class="range__details">
+                    <h4>SUVS</h4>
+                    <a href="suv.html"><i class="ri-arrow-right-fill"></i></a>
+                </div>
+            </div>
+            <div class="range__card">
+                <img src="assets/range-3.jpg" alt="range">
+                <div class="range__details">
+                    <h4>VANS</h4>
+                    <a href="vans.html"><i class="ri-arrow-right-fill"></i></a>
+                </div>
+            </div>
+            <div class="range__card">
+                <img src="assets/range-4.jpg" alt="range">
+                <div class="range__details">
+                    <h4>ELECTRIC</h4>
+                    <a href="EVs.html"><i class="ri-arrow-right-fill"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Section -->
+
+    <section class="trending container" id="trending">
+        <div class="heading">
+            <h2>Trending Vehicle</h2>
+        </div>
+        <div class="trending__content">
+            <div class="trend__box">
+                <h4>Electric</h4>
+                <img src="assets/trend-1.png" alt="">
+                <h3>Taycan </h3>
+                <p>From $290/day</p>
+            </div>
+            <div class="trend__box">
+                <h4>Electric</h4>
+                <img src="assets/trend-2.png" alt="">
+                <h3>Turbo</h3>
+                <p>From $290/day</p>
+            </div>
+            <div class="trend__box">
+                <h4>Electric</h4>
+                <img src="assets/trend-3.png" alt="">
+                <h3>Taycan S</h3>
+                <p>From $290/day</p>
+            </div>
+            <div class="trend__box">
+                <h4>Electric</h4>
+                <img src="assets/trend-4.png" alt="">
+                <h3>Turismo</h3>
+                <p>From $290/day</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Location Section -->
+
+    <section class="section__container location__container" id="rent">
+        <div class="location__image">
+            <img src="assets/location.png" alt="location">
+        </div>
+        <div class="location__content">
+            <h2 class="section__header">FIND CARS IN YOUR LOCATIONS</h2>
+            <p>Discover the perfect vehicle tallored to your needs, wherever you are. Our 'Find Car in Your Locations'
+                feature allows you to effortlessely search and select form our premium fleet available near you. Whether
+                you're looking for luxury sedan, a spacious SUV, or a sporty convertible, our easy-to-use tool ensure
+                you to find the ideal car for you journey. Simple enter your location, and let us connect you with
+                top-tier vehicles ready to rental.</p>
+            <div class="location__btn">
+                <button class="btn">Find a Location</button>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="heading">
+            <h2>Meet Our Experts</h2>
+        </div>
+        <div class="team__container">
+            <div class="team_box">
+                <img src="assets/owner_2.jpg" alt="">
+                <h2>Utkarsh</h2>
+                <span>Co-Head</span>
+                <p>As a car rental company, we seek out top manufacturers to provide our customers with the best
+                    vehicles.</p>
+            </div>
+
+            <div class="team_box">
+                <img src="assets/owner_1.png" alt="">
+                <h2>Sahil</h2>
+                <span>CEO</span>
+                <p>At our car rental company, we prioritize quality and reliability by partnering with trusted
+                    automotive brands to ensure every drive exceeds expectations.</p>
+            </div>
+
+            <div class="team_box">
+                <img src="assets/owner_3.jpg" alt="">
+                <h2>Ajay</h2>
+                <span>Co-Head</span>
+                <p>As a car rental company, we carefully select premium brands to ensure a safe and enjoyable ride for
+                    our customers.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Story Section -->
+
+    <section class="section__container story__container">
+        <h2 class="section__header">STORIES BEHIND THE WHEEL</h2>
+        <div class="story__grid">
+            <div class="story__card">
+                <div class="story__date">
+                    <span>12</span>
+                    <div>
+                        <p>January</p>
+                        <p>2024</p>
+                    </div>
+                </div>
+                <h4>Adventures on the Open Road</h4>
+                <p>
+                    Join us as we dive into the exhilarating stories of travelers who
+                    embarked on unforgettable journeys with RENTO.
+                </p>
+                <img src="assets/story-1.jpg" alt="story">
+            </div>
+            <div class="story__card">
+                <div class="story__date">
+                    <span>04</span>
+                    <div>
+                        <p>March</p>
+                        <p>2024</p>
+                    </div>
+                </div>
+                <h4>Luxury and Comfort: Experiences</h4>
+                <p>
+                    In this series, we highlight the luxurious touches, unparalleled
+                    comfort, and exceptional service that make every ride.
+                </p>
+                <img src="assets/story-2.jpg" alt="story">
+            </div>
+            <div class="story__card">
+                <div class="story__date">
+                    <span>18</span>
+                    <div>
+                        <p>June</p>
+                        <p>2024</p>
+                    </div>
+                </div>
+                <h4>Cars that Adapt to Your Lifestyle</h4>
+                <p>
+                    Read about how our versatile vehicles have seamlessly integrated
+                    into the lives of professionals and families alike.
+                </p>
+                <img src="assets/story-3.jpg" alt="story">
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Section -->
+
+    <section class="banner__container">
+        <div class="banner__wrapper">
+            <img src="assets/banner-1.png" alt="banner">
+            <img src="assets/banner-2.png" alt="banner">
+            <img src="assets/banner-3.png" alt="banner">
+            <img src="assets/banner-4.png" alt="banner">
+            <img src="assets/banner-5.png" alt="banner">
+            <img src="assets/banner-6.png" alt="banner">
+            <img src="assets/banner-7.png" alt="banner">
+            <img src="assets/banner-8.png" alt="banner">
+            <img src="assets/banner-9.png" alt="banner">
+            <img src="assets/banner-10.png" alt="banner">
+        </div>
+    </section>
+
+    <!-- Review Section -->
+
+    <section>
+        <div class="review__container" id="reviews">
+            <div class="heading">
+                <h2>Our Customer's</h2>
+            </div>
+            <div class="review__content container">
+                <div class="tbox">
+                    <div class="stars">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                    </div>
+                    <p>"Fantastic service from start to finish! The car was clean, comfortable, and ready on time. The
+                        staff was friendly and helpful, and the prices were very reasonable. Highly recommend this
+                        company!"</p>
+                    <div class="profile">
+                        <img src="assets/profile_1.jpg" alt="">
+                        <div class="profile_data">
+                            <h3>XAVIER</h3>
+                            <span>NCR</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tbox">
+                    <div class="stars">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                    </div>
+                    <p>"RENTO made my trip stress-free and enjoyable. Their premium vehicle was in perfect condition,
+                        and pickup was incredibly fast. Customer service was top-notch — friendly, efficient, and
+                        knowledgeable. Highly recommended!"</p>
+                    <div class="profile">
+                        <img src="assets/profile_2.jpg" alt="">
+                        <div class="profile_data">
+                            <h3>Bhupendra Jogi</h3>
+                            <span>Gurgaon</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tbox">
+                    <div class="stars">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-half-fill"></i>
+                    </div>
+                    <p>"Fantastic rental company! The vehicle was pristine and ran perfectly. Staff were polite and made
+                        the whole process easy. I felt well taken care of from start to finish. Great value for a
+                        premium service!"</p>
+                    <div class="profile">
+                        <img src="assets/profile_3.jpg" alt="">
+                        <div class="profile_data">
+                            <h3>Just Sul</h3>
+                            <span>Shimla</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tbox">
+                    <div class="stars">
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-fill"></i>
+                        <i class="ri-star-line"></i>
+                    </div>
+                    <p>"Exceptional experience! The booking process was smooth, and the car exceeded my expectations —
+                        spotless, luxurious, and ready right on time. The RENTO team was professional and courteous
+                        throughout. Will definitely use them again!"</p>
+                    <div class="profile">
+                        <img src="assets/profile_4.jpg" alt="">
+                        <div class="profile_data">
+                            <h3>Sallu Behan</h3>
+                            <span>South Delhi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="review__btn" id="reviews">
+                <a href="#reviews"><button class="btn">see more reviews</button></a>
+            </div>
+
+
+    </section>
+
+    <!-- Download Section -->
+    <section class="download">
+        <div class="section__container download__container">
+            <div class="download__content">
+                <h2 class="section__header">RENTO CAR RENTAL</h2>
+                <div class="download__links">
+                    <a href="#">
+                        <img src="assets/apple.png" alt="apple">
+                    </a>
+                    <a href="#">
+                        <img src="assets/google.png" alt="google">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- News Section -->
+    <section class="news" id="contact">
+        <div class="section__container news__container">
+            <h2 class="section__header">Stay up to date on all the latest news.</h2>
+            <form action="\">
+                <input type="mail" placeholder="Your email">
+                <button class="btn">
+                    <i class="ri-send-plane-fill"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+    <!-- Footer Section -->
+    <footer>
+        <div class="section__container footer__container">
+            <div class="footer__col">
+                <h4>Resources</h4>
+                <ul class="footer__links">
+                    <li><a href="#">Installation Manual</a></li>
+                    <li><a href="#">Release Note</a></li>
+                    <li><a href="#">Community Help</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>Company</h4>
+                <ul class="footer__links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>Product</h4>
+                <ul class="footer__links">
+                    <li><a href="#">Demo</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Features</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4>Follow Us</h4>
+                <ul class="footer__socials">
+                    <li>
+                        <a href="whatsapp.html"><i class="ri-whatsapp-line"></i></a>
+                    </li>
+                    <li>
+                        <a href="instagram.html"><i class="ri-instagram-line"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="ri-twitter-fill"></i></a>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__bar">
+            Copyright © 2025 PGDCA 204,198,179. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const navLinks = document.getElementById("nav-links");
+        const menuBtnIcon = menuBtn.querySelector("i");
+
+        menuBtn.addEventListener("click", (e) => {
+            navLinks.classList.toggle("open");
+
+            const isOpen = navLinks.classList.contains("open");
+            menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line")
+        })
+
+        navLinks.addEventListener("click", (e) => {
+            navLinks.classList.remove("open");
+            menuBtnIcon.setAttribute("class", "ri-menu-line");
+        })
+    </script>
+</body>
+
+</html>
